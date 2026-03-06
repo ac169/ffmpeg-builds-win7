@@ -1,4 +1,4 @@
-FROM ubuntu:24.04
+FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND noninteractive
 RUN \
@@ -15,7 +15,12 @@ RUN \
     apt-get -y clean && \
     git config --global user.email "builder@localhost" && \
     git config --global user.name "Builder" && \
-    git config --global advice.detachedHead false
+    git config --global advice.detachedHead false && \
+    git config --global url."https://gh-proxy.com/https://github.com/".insteadOf "https://github.com/" && \
+    git config --global url."https://gh-proxy.com/https://raw.githubusercontent.com/".insteadOf "https://raw.githubusercontent.com/" && \
+    git config --global http.https://aomedia.googlesource.com.proxy socks5://172.30.1.30:8091 && \
+    git config --global http.https://chromium.googlesource.com.proxy socks5://172.30.1.30:8091
+
 
 ENV CARGO_HOME="/opt/cargo" RUSTUP_HOME="/opt/rustup" PATH="/opt/cargo/bin:${PATH}"
 RUN curl https://sh.rustup.rs -sSf | bash -s -- -y --no-modify-path && \
