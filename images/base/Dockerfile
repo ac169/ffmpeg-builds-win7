@@ -1,7 +1,9 @@
-FROM ubuntu:23.04
+FROM ubuntu:23.10
 
 ENV DEBIAN_FRONTEND noninteractive
 RUN \
+    sed -i 's@http://archive.ubuntu.com/ubuntu@http://mirrors.ustc.edu.cn/ubuntu-old-releases/ubuntu@g' /etc/apt/sources.list && \
+    sed -i 's@http://security.ubuntu.com/ubuntu@http://mirrors.ustc.edu.cn/ubuntu-old-releases/ubuntu@g' /etc/apt/sources.list && \
     apt-get -y update && \
     apt-get -y dist-upgrade && \
     apt-get -y install build-essential yasm nasm \
