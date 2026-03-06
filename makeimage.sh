@@ -7,6 +7,9 @@ TMPCFG="$(mktemp --suffix=.toml)"
 cat <<EOF >"$TMPCFG"
 [worker.oci]
   max-parallelism = 4
+[registry."*"]
+  mirrors = ["docker.nju.edu.cn", "docker.1ms.run", "docker.m.daocloud.io"]
+  http = true
 EOF
 trap "rm -f '$TMPCFG'" EXIT
 
