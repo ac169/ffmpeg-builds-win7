@@ -1,6 +1,6 @@
-ARG GH_REPO=ghcr.io/btbn/ffmpeg-builds
+# ARG GH_REPO=ghcr.io/btbn/ffmpeg-builds
 # FROM $GH_REPO/base:latest
-FROM $GH_REPO/base@sha256:71694f995874254425669b764b85f269a842f2b380a9693952f447738d01d4a8
+FROM ghcr.io/btbn/ffmpeg-builds/base@sha256:71694f995874254425669b764b85f269a842f2b380a9693952f447738d01d4a8
 
 RUN --mount=src=ct-ng-config,dst=/.config \
     git clone --filter=blob:none https://github.com/crosstool-ng/crosstool-ng.git /ct-ng && cd /ct-ng && \
